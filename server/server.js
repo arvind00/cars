@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const router = require('./routes');
 const connectToDb = require('./db_modules/connect');
 
@@ -13,5 +14,5 @@ app.get('/users', (req, res) => {
 })
 
 app.use('/api', router);
-
-app.listen(5000, ()=> console.log('Server started on port 5000'));
+app.use(express.static(path.join(__dirname, 'cars-client')));
+app.listen(5000, () => console.log('Server started on port 5000'));
